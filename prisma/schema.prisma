@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  resumes      Resume[]
+  requirements Requirement[]
+  teams        TeamMember[]
+
+  @@map("users")
+}
+
+model Resume {
+  id          String   @id @default(cuid())
+  filename    String
+  originalUrl String
+  processedUrl String?
+  status      ResumeStatus @default(UPLOADED)
+  techStacks  Json?
+  pointsAdded Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  userId User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  emailLogs EmailLog[]
+
+  @@map("resumes")
+}
+
+model Requirement {
+  id           String            @id @default(cuid())
+  jobTitle     String
+  client       String
+  primeVendor  String?
+  status       RequirementStatus @default(APPLIED)
+  nextSteps    String?
+  vendorInfo   Json?
+  consultants  String[]
+  interviewId  String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  // Relations
+  userId User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@map("requirements")
+}
+
+model EmailLog {
+  id          String      @id @default(cuid())
+  recipient   String
+  subject     String
+  status      EmailStatus @default(PENDING)
+  error       String?
+  sentAt      DateTime?
+  createdAt   DateTime    @default(now())
+
+  // Relations
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@map("email_logs")
+}
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members TeamMember[]
+
+  @@map("teams")
+}
+
+model TeamMember {
+  id     String   @id @default(cuid())
+  role   TeamRole @default(MEMBER)
+  joinedAt DateTime @default(now())
+
+  // Relations
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  teamId String
+  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, teamId])
+  @@map("team_members")
+}
+
+enum ResumeStatus {
+  UPLOADED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum RequirementStatus {
+  APPLIED
+  NO_RESPONSE
+  SUBMITTED
+  ON_HOLD
+  INTERVIEWED
+}
+
+enum EmailStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum TeamRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
