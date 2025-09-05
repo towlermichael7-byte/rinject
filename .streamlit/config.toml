@@ -1,0 +1,45 @@
+[global]
+# Production settings for resume customizer
+developmentMode = false
+showWarningOnDirectExecution = false
+
+[server]
+# Server settings optimized for performance
+runOnSave = false
+port = 8501
+enableCORS = true
+enableXsrfProtection = true
+maxUploadSize = 200
+maxMessageSize = 200
+baseUrlPath = ""
+enableWebsocketCompression = true
+enableStaticServing = true
+
+[browser]
+# Browser settings optimized for performance
+gatherUsageStats = false
+serverAddress = "0.0.0.0"
+
+[theme]
+# Professional theme for resume customizer
+primaryColor = "#1f77b4"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#262730"
+font = "sans serif"
+
+[runner]
+# Performance optimizations
+magicEnabled = true
+fastReruns = true
+enforceSerializableSessionState = false
+
+[client]
+# Client-side optimizations
+showErrorDetails = true
+toolbarMode = "auto"
+
+[logger]
+# Logging for monitoring
+level = "info"
+messageFormat = "%(asctime)s.%(msecs)03d [%(levelname)s] %(name)s: %(message)s"

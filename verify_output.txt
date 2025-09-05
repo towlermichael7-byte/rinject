@@ -1,0 +1,16 @@
+2025-09-01 06:46:03.056 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2025-09-01 06:46:03.061 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+=== Environment Verification ===
+Python: C:\Users\HP\AppData\Local\Programs\Python\Python313\python.exe
+Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+Working Directory: C:\Users\HP\Downloads\Injector
+
+=== Testing Imports ===
+python-docx: 1.2.0
+Successfully imported BulletFormatter
+Successfully created BulletFormatter instance
+Bullet detection test: '• Test bullet' -> Bullet
+
+=== Testing File Operations ===
+Successfully wrote to test_file.txt
+Successfully removed test_file.txt

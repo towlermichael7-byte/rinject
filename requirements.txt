@@ -1,0 +1,37 @@
+# Core Dependencies
+streamlit>=1.28.0
+python-docx>=0.8.11
+python-multipart>=0.0.5
+
+# Document Processing
+mammoth>=1.5.0  # For docx to HTML conversion
+python-pptx>=0.6.21  # For PowerPoint file handling
+PyPDF2>=3.0.0  # For PDF file operations
+python-docx2pdf>=0.1.8  # For docx to PDF conversion
+
+# System & Performance
+psutil>=5.9.0  # System monitoring
+python-magic>=0.4.27  # File type detection
+python-dateutil>=2.8.2  # Date parsing and handling
+pytz>=2023.3  # Timezone support
+
+# Security
+cryptography>=3.4.8  # Encryption and security
+python-jose>=3.3.0  # JWT support
+passlib>=1.7.4  # Password hashing
+
+# Data Processing
+pandas>=2.0.0  # Data manipulation and analysis
+numpy>=1.24.0  # Numerical operations
+
+# Async & Concurrency
+asyncio>=3.4.3  # Asynchronous I/O
+concurrent-log-handler>=0.9.24  # Concurrent logging
+
+# Development Tools
+python-dotenv>=1.0.0  # Environment variable management
+tqdm>=4.65.0  # Progress bars
+colorama>=0.4.6  # Colored terminal output
+
+# Email & Communication
+yagmail>=0.15.293  # Simplified email sending
